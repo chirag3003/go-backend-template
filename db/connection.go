@@ -29,7 +29,7 @@ func (c *conn) DB() *mongo.Database {
 }
 
 func ConnectMongo() Connection {
-	session, err := mongo.Connect(options.Client().ApplyURI(os.Getenv("MONGODB_URI")))
+	session, err := mongo.Connect(options.Client().ApplyURI(os.Getenv("MONGO_URI")))
 	if err != nil {
 		panic(err)
 	}

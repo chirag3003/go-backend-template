@@ -37,6 +37,9 @@ func (r *userRepository) GetUserByID(context context.Context, id string) (*model
 	var user models.User
 	ID, err := bson.ObjectIDFromHex(id)
 	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, nil
+		}
 		return nil, err
 	}
 	err = r.user.FindOne(context, bson.M{"_id": ID}).Decode(&user)
@@ -50,6 +53,9 @@ func (r *userRepository) GetUserByEmail(context context.Context, email string) (
 	var user models.User
 	err := r.user.FindOne(context, bson.M{"email": email}).Decode(&user)
 	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, nil
+		}
 		return nil, err
 	}
 	return &user, nil

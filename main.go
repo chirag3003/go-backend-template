@@ -1,9 +1,14 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/chirag3003/go-backend-template/controller"
 	"github.com/chirag3003/go-backend-template/db"
 	"github.com/chirag3003/go-backend-template/helpers"
+	"github.com/chirag3003/go-backend-template/middlewares"
+	"github.com/chirag3003/go-backend-template/repository"
 	"github.com/chirag3003/go-backend-template/routes"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
@@ -30,8 +35,14 @@ func main() {
 	app.Use(cors.New())
 	app.Use(logger.New())
 
+	// setting up repository
+	repo := repository.Setup(client)
+
+	// setting up middlewares
+	middlewares.Setup(repo)
+
 	// setting up routes and controllers
-	routes.Setup(controller.Setup(client), app)
+	routes.Setup(controller.Setup(repo), app)
 
 	app.Get("/", func(c fiber.Ctx) error {
 		return c.JSON(fiber.Map{
@@ -42,4 +53,6 @@ func main() {
 			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables"},
 		})
 	})
+
+	app.Listen(fmt.Sprintf(":%s", os.Getenv("PORT")))
 }
