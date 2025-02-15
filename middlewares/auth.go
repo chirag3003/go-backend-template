@@ -1,6 +1,8 @@
 package middlewares
 
 import (
+	"fmt"
+
 	"github.com/chirag3003/go-backend-template/models"
 	"github.com/gofiber/fiber/v3"
 )
@@ -10,8 +12,9 @@ type AuthHeaders struct {
 }
 
 func IsAuthenticated(ctx fiber.Ctx) error {
-	authHeaders := AuthHeaders{}
+	authHeaders := &AuthHeaders{}
 	if err := ctx.Bind().Header(authHeaders); err != nil {
+		fmt.Print(err)
 		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": "Unauthorized",
 		})

@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -27,7 +28,7 @@ func (u *User) SetPassword(password string) error {
 }
 
 func (u *User) VerifyPassword(password string) bool {
-	// return HashPassword(password) == u.Hash
+	// return HashPassword(passwrd) == u.Hash
 	return bcrypt.CompareHashAndPassword([]byte(u.Hash), []byte(password)) == nil
 }
 
@@ -37,23 +38,21 @@ func (user *User) GenerateJWT() (string, error) {
 		"name":    user.Name,
 		"email":   user.Email,
 		"phoneNo": user.PhoneNo,
+		"iat":     time.Now().Unix(),
+		"exp":     time.Now().Add(time.Hour * 24 * 365).Unix(),
 	})
 	return token.SignedString([]byte(os.Getenv("JWT_SECRET")))
 }
 
 func (user *User) ParseJWT(tokenString string) (*User, error) {
-	token, err := jwt.ParseWithClaims(tokenString, &jwt.MapClaims{}, func(token *jwt.Token) (interface{}, error) {
+	claims := jwt.MapClaims{}
+	_, err := jwt.ParseWithClaims(tokenString, &claims, func(token *jwt.Token) (interface{}, error) {
 		return []byte(os.Getenv("JWT_SECRET")), nil
 	})
 	if err != nil {
 		return nil, err
 	}
-	claims, ok := token.Claims.(jwt.MapClaims)
-	if !ok {
-		return nil, err
-	}
 	id, err := bson.ObjectIDFromHex(claims["id"].(string))
-  fmt.Println(id, "IDDD")
 	if err != nil {
 		return nil, err
 	}

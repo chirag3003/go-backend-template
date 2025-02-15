@@ -7,5 +7,5 @@ import (
 
 func userRoutes(app fiber.Router) {
 
-	app.Get("/me", middlewares.IsAuthenticated, conts.User.GetMe)
+	app.Get("/me", conts.User.GetMe, middlewares.IsAuthenticated)
 }
