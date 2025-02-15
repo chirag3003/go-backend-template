@@ -7,6 +7,7 @@ import (
 	"github.com/chirag3003/go-backend-template/controller"
 	"github.com/chirag3003/go-backend-template/db"
 	"github.com/chirag3003/go-backend-template/helpers"
+	"github.com/chirag3003/go-backend-template/helpers/aws"
 	"github.com/chirag3003/go-backend-template/middlewares"
 	"github.com/chirag3003/go-backend-template/repository"
 	"github.com/chirag3003/go-backend-template/routes"
@@ -29,6 +30,9 @@ func main() {
 	// Connecting to MongoDB
 	client := db.ConnectMongo()
 	defer client.Close()
+
+  // Setting up AWS
+	aws.SetupAWS()
 
 	// Creating a new Fiber app
 	app := fiber.New()
