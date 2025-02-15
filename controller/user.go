@@ -28,5 +28,10 @@ func (u *userController) GetMe(ctx fiber.Ctx) error {
 			"message": "Unauthorized",
 		})
 	}
-	return ctx.JSON(user)
+	return ctx.JSON(fiber.Map{
+		"id":      user.ID,
+		"name":    user.Name,
+		"email":   user.Email,
+		"phoneNo": user.PhoneNo,
+	})
 }
