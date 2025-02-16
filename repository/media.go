@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 
+	"github.com/chirag3003/go-backend-template/config"
 	"github.com/chirag3003/go-backend-template/models"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -21,7 +22,7 @@ type MediaRepository interface {
 
 func NewMediaRepository() MediaRepository {
 	return &mediaRepository{
-		media: conn.DB().Collection("media"),
+		media: conn.DB().Collection(config.MEDIA_COLLECTION),
 	}
 }
 
