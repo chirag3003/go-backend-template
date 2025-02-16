@@ -6,15 +6,17 @@ import (
 
 var repo *repository.Repository
 
-type Controllers struct{
-  Auth AuthController
-  User UserController
+type Controllers struct {
+	Auth  AuthController
+	User  UserController
+	Media MediaController
 }
 
 func Setup(repository *repository.Repository) *Controllers {
 	repo = repository
 	return &Controllers{
-    Auth: newAuthController(),
-    User: newUserController(),
-  }
+		Auth:  newAuthController(),
+		User:  newUserController(),
+		Media: newMediaController(),
+	}
 }

@@ -31,7 +31,7 @@ func main() {
 	client := db.ConnectMongo()
 	defer client.Close()
 
-  // Setting up AWS
+	// Setting up AWS
 	aws.SetupAWS()
 
 	// Creating a new Fiber app
@@ -54,7 +54,7 @@ func main() {
 			"author":   "Chirag Bhalotia",
 			"github":   "https://github.com/chirag3003",
 			"website":  "https://chirag.codes",
-			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables"},
+			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables", "Go Modules", "Mongodb", "Docker"},
 		})
 	})
 

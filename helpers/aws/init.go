@@ -15,6 +15,7 @@ var awsConfig aws.Config
 func SetupAWS() {
 	config, err := config.LoadDefaultConfig(context.TODO(),
 		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(os.Getenv("S3_ACCESS_KEY"), os.Getenv("S3_SECRET_KEY"), "")),
+    config.WithRegion(os.Getenv("S3_REGION")),
 	)
 	if err != nil {
 		log.Fatalf("unable to load SDK config, %v", err)

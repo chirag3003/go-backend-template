@@ -14,5 +14,5 @@ func Setup(controllers *controller.Controllers, app *fiber.App)  {
   //Setting Routes
   userRoutes(app.Group("/user"))
   authRoutes(app.Group("/auth"))
-  
+  mediaRoutes(app.Group("/media"))  
 }
