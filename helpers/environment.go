@@ -17,7 +17,7 @@ func VerifyENV() {
 		"S3_REGION",
 		"S3_BUCKET",
 		"S3_ENDPOINT",
-		"S3_FOLDER"
+		"S3_FOLDER",
 	}
 
 	err := false
