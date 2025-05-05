@@ -32,6 +32,16 @@ This is a starter template in Go using Go Fiber. This simple template allows eve
 
 - Go 1.23+
 - MongoDB
+- (Optional) libvips (required for image optimization)
+
+Note: Image optimization is optional. To opt out, follow these steps:
+
+1. Open the `middlewares/file.go` file.
+2. Locate the section where the `helpers.OptimiseImage` function is called.
+3. Comment out or remove the lines related to `helpers.OptimiseImage`.
+4. Uncomment the lines that directly open the file without optimization.
+
+If you choose to use image optimization, ensure that the `libvips` package is installed on your device.
 
 ### Installation
 
