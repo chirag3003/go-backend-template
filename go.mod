@@ -36,6 +36,7 @@ require (
 	github.com/gofiber/utils/v2 v2.0.0-beta.7 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
+	github.com/h2non/bimg v1.1.9 // indirect
 	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/matoous/go-nanoid/v2 v2.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect

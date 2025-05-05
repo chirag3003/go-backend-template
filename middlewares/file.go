@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/chirag3003/go-backend-template/helpers"
 	"github.com/chirag3003/go-backend-template/models"
 	"github.com/gofiber/fiber/v3"
 	"github.com/matoous/go-nanoid/v2"
@@ -26,14 +27,14 @@ func UploadFiles(ctx fiber.Ctx) error {
 		}
 
 		// open file reader
-		open, err := file.Open()
+		// open, err := file.Open()
+		open, err := helpers.OptimiseImage(*file)
 		if err != nil {
 			return ctx.SendStatus(fiber.StatusInternalServerError)
 		}
-		defer open.Close()
 
 		// Creating file key
-		key := fmt.Sprintf("%s/%s%s", os.Getenv("S3_FOLDER"), name, file.Filename)
+		key := fmt.Sprintf("%s/%s%s", os.Getenv("S3_FOLDER"), name, file.Filename + ".webp")
 
 		// upload file to s3
 		res, err := repo.S3.Upload(ctx.Context(), key, open)
