@@ -51,12 +51,13 @@ func main() {
 	app.Get("/", func(c fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message":  "A go backend template written by Chirag Bhalotia!",
-			"author":   "Chirag Bhalotia",
+			"author":   "Chirag Bhaloti",
 			"github":   "https://github.com/chirag3003",
 			"website":  "https://chirag.codes",
-			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables", "Go Modules", "Mongodb", "Docker", "Air", "Auto Reload"},
+			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables", "Go Modules", "Mongodb", "Docker", "Air", "Auto Reload", "Compose", "Deploy-script"},
 		})
 	})
 
+	fmt.Println("Listening on port 5000")
 	app.Listen(fmt.Sprintf(":%s", os.Getenv("PORT")))
 }
