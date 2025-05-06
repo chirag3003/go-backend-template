@@ -54,7 +54,7 @@ func main() {
 			"author":   "Chirag Bhalotia",
 			"github":   "https://github.com/chirag3003",
 			"website":  "https://chirag.codes",
-			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables", "Go Modules", "Mongodb", "Docker"},
+			"features": []string{"JWT", "CORS", "MongoDB", "S3", "Logger", "Environment Variables", "Go Modules", "Mongodb", "Docker", "Air", "Auto Reload"},
 		})
 	})
 
