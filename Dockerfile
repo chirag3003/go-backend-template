@@ -1,5 +1,8 @@
 FROM golang:latest
 
+# Install libvips and libvips-dev
+RUN apt update && apt install -y libvips-dev libvips && rm -rf /var/lib/apt/lists/*
+
 # Set the Current Working Directory inside the container
 WORKDIR /app
 
