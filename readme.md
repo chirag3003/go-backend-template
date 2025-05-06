@@ -62,6 +62,21 @@ If you choose to use image optimization, ensure that the `libvips` package is in
     cp .env.example .env
     ```
 
+### Live Reloading with Air
+
+This project supports live reloading during development using [Air](https://github.com/cosmtrek/air).
+
+1. Install Air:
+    ```sh
+    go install github.com/cosmtrek/air@latest
+    ```
+
+3. Run the application with Air:
+    ```sh
+    air
+    ```
+Air will automatically reload the application whenever you make changes to the code.
+
 ### Usage
 
 1. Run the application:
